@@ -1,0 +1,12 @@
+---
+# docker_role/handlers/main.yml
+
+# 1. Перезапуск Docker
+- name: Перезапустить Docker
+  systemd:
+    name: docker
+    state: restarted
+    enabled: yes
+  become: true
+---
+# handlers file for docker_role

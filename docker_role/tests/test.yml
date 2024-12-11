@@ -1,0 +1,24 @@
+---
+# docker_role/tests/test.yml
+
+- name: Проверить установку Docker
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Проверить, что Docker установлен
+      command: docker --version
+      register: docker_version
+      failed_when: false
+
+    - name: Убедиться, что Docker установлен
+      assert:
+        that:
+          - "'Docker version' in docker_version.stdout"
+
+    - name: Проверить, что сервис Docker работает
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+

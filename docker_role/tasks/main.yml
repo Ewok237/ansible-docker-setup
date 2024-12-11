@@ -1,0 +1,37 @@
+---
+# docker_role/tasks/main.yml
+
+# 1. Установка зависимостей
+- name: Установить зависимости
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    state: present
+    update_cache: yes
+  become: true
+
+# 2. Добавить GPG-ключ Docker
+- name: Добавить GPG-ключ Docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: true
+
+# 3. Добавить репозиторий Docker
+- name: Добавить репозиторий Docker
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+  become: true
+
+# 4. Установить Docker
+- name: Установить Docker CE
+  apt:
+    name: docker-ce
+    state: latest
+  become: true
+---
+# tasks file for docker_role
