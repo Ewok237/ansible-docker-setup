@@ -8,5 +8,4 @@
     state: restarted
     enabled: yes
   become: true
----
-# handlers file for docker_role
+

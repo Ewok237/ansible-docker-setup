@@ -33,5 +33,4 @@
     name: docker-ce
     state: latest
   become: true
----
-# tasks file for docker_role
+

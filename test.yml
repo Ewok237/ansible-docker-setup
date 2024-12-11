@@ -1,0 +1,6 @@
+---
+- name: Проверить работу Ansible
+  hosts: localhost
+  tasks:
+    - name: Пинговать локальный хост
+      ping:
